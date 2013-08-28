@@ -5,6 +5,13 @@ class ApplicationController < ActionController::Base
 
   protected
 
+  def render_404
+    respond_to do |type|
+      type.html {render :file => 'public/404.html', :layout => false, :status => 404}
+      type.all  {render :nothing => true, :status => 404}
+    end
+  end
+
   private
 
   def no_layout_if_xhr
